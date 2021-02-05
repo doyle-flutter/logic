@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoginPage</title>
+    <style>
+        input[type="submit" i]{
+            border: 0;
+            color: white;
+            background-color: black;
+            border-radius: 15%;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/react-router-dom@5.2.0/umd/react-router-dom.js"></script>
+    <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script type="text/babel">
+        const {BrowserRouter, Route, Switch, Link} = ReactRouterDOM;
+        const {useState, useEffect} = React;
+
+        const LoginPage = (props) => {
+            const loginPageStyles = {
+                titleStyleWrapper: {
+                    textAlign: 'center'
+                },
+                inputStyles: {
+                    margin: '5px',
+                    width: '200px',
+                    height: '30px',
+                    padding: '10px'
+                },
+                inputStyleWrapper: {
+                    textAlign: 'center'
+                },
+                loginBtnStyle: {
+                    margin: '4px',
+                    padding: '16px',
+                    fontWeight: 'bold',
+                },
+                loginBtnStyleWrapper: {
+                    textAlign: 'center'
+                }
+            }
+            return (
+                <div>
+                    <div style={loginPageStyles.titleStyleWrapper} >
+                        <h2>LoginPage</h2>
+                    </div>
+                    <form action="loginProcess" method="post">
+                        <div style={loginPageStyles.inputStyleWrapper} >
+                            <input style={loginPageStyles.inputStyles} type="email" name="cid" id="cid" placeholder="user || admin@jamesdev.com" />
+                        </div>
+                        <div style={loginPageStyles.inputStyleWrapper} >
+                            <input style={loginPageStyles.inputStyles} type="password" name="cpw" id="cpw" placeholder="user || admin" />
+                        </div>
+                        <div style={loginPageStyles.loginBtnStyleWrapper}>
+                            <input style={loginPageStyles.loginBtnStyle} type="submit" value="Login" />
+                        </div>
+                    </form>
+                </div>
+            );
+        };
+        const UserPage = (props) => (
+            <div>
+                <h2>UserPage</h2>
+                <p><a href="/">Logout_HOME</a></p>
+            </div>
+        );
+        const AdminPage = (props) => (
+            <div>
+                <h2>AdminPage</h2>
+                <p><a href="/">Logout_HOME</a></p>
+            </div>
+        );
+
+        const MainApp = (props) => (
+            <BrowserRouter>
+                <Switch>
+                    <Route exact path='/'><LoginPage /></Route>
+                    <Route exact path='/user'><UserPage /></Route>
+                    <Route exact path='/admin'><AdminPage /></Route>
+                </Switch>
+            </BrowserRouter>
+        );
+
+        ReactDOM.render(<MainApp />, document.getElementById('root'));
+    </script>
+</body>
+</html>
